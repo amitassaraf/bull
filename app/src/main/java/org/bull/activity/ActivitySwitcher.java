@@ -20,19 +20,15 @@ import lombok.experimental.Accessors;
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public final class ActivitySwitcher extends Task {
 
-    static class SwitcherMetadata {
-        long delay; // Delay
-        boolean finish; // Whether to finish the activity when switching
-        boolean requiresAction; // Whether starting switching process requires action
-        int flags; // The intent flags
-        Pair<Integer, Integer> transition; // The transition animation
-    }
+    /* --- Members --- */
 
     @NonNull
     private Context mContext;
     @NonNull
     private Class<? extends Activity> mTarget;
     protected SwitcherMetadata mMetadata;
+
+    /* --- Overridden methods --- */
 
     public void run() {
         if (mMetadata.requiresAction)
@@ -51,6 +47,8 @@ public final class ActivitySwitcher extends Task {
             currentActivity.finish();
     }
 
+    /* --- General methods --- */
+
     /**
      * Method to trigger the switcher if requiresAction was called when building.
      */
@@ -58,6 +56,8 @@ public final class ActivitySwitcher extends Task {
         mMetadata.requiresAction = false;
         this.start();
     }
+
+    /* --- Static methods --- */
 
     /**
      * Method to begin building an activity switcher
@@ -69,6 +69,19 @@ public final class ActivitySwitcher extends Task {
         return new Builder(currentActivity);
     }
 
+    /* --- Inner classes --- */
+
+    /**
+     * Switcher metadata class
+     */
+    static class SwitcherMetadata {
+        long delay; // Delay
+        boolean finish; // Whether to finish the activity when switching
+        boolean requiresAction; // Whether starting switching process requires action
+        int flags; // The intent flags
+        Pair<Integer, Integer> transition; // The transition animation
+    }
+
     /**
      * The builder used to build the ActivitySwitcher
      */
@@ -76,10 +89,14 @@ public final class ActivitySwitcher extends Task {
     @RequiredArgsConstructor
     public static class Builder {
 
+        /* --- Members --- */
+
         @NonNull
         private Context mContext;
         // The switching metadata
         private SwitcherMetadata mMetadata = new SwitcherMetadata();
+
+        /* --- Constructors --- */
 
         /**
          * Method used to add delay to the activity switch
@@ -91,6 +108,8 @@ public final class ActivitySwitcher extends Task {
             mMetadata.delay = delay;
             return this;
         }
+
+        /* --- General methods --- */
 
         /**
          * Method to add a transition to the activity switch

@@ -8,6 +8,8 @@ package org.bull.tasks;
  */
 public class Task extends Thread {
 
+    /* --- Static methods --- */
+
     public static void sleep(long time) {
         try {
             Thread.sleep(time);

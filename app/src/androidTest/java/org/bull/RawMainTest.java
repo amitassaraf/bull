@@ -2,10 +2,14 @@ package org.bull;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.annimon.stream.function.Function;
 
 import org.bull.activity.ActivitySwitcher;
+import org.bull.tasks.CombinedTask;
+import org.bull.tasks.MetadataRunnable;
+import org.bull.tasks.NetworkTask;
 
 import java.lang.reflect.Method;
 
@@ -29,6 +33,11 @@ public class RawMainTest {
                                         .$switch(TestActivity.class);
         switcher.trigger();
 
+        new CombinedTask(new TestActivity(), metadata -> {
+            metadata.putInt("test", 7);
+        }, metadata -> {
+            System.out.println(metadata.getInt("test", 0));
+        }).start();
 
     }
 }
