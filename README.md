@@ -27,13 +27,13 @@ Some examples:
 ---------------------------
 Activity Switcher
 
-    ActivitySwitcher switcher = ActivitySwitcher.$chain(new TestActivity())
+    ActivitySwitcher switcher = ActivitySwitcher.$chain(this)
 	.delay(100) // Switch Delay
 	.intentFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) 
 	.transition(R.anim.fadein, R.anim.fadeout)
 	.exitOnSwitch() // Finish current activity on switch
 	.requireTrigger() // Require triggering
-	.$switch(TestActivity.class);
+	.$switch(TargetActivity.class);
     
     switcher.trigger(); // Trigger switch
 
