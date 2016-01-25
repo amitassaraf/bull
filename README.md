@@ -20,7 +20,7 @@ Features
  - Animation Utils
  - View Utils (FontTextView and more)
 
-Bull is super work in progress and will be updated frequently! If you would like to help with development, contact me!
+Bull is **super** work in progress and will be updated frequently! If you would like to help with development, contact me!
 
 Some examples:
 -----------------------
@@ -39,7 +39,7 @@ Activity Switcher
 
 Combined Task
 
-    new CombinedTask(new TestActivity(), metadata -> {
+    new CombinedTask(this, metadata -> {
             metadata.putInt("test", 7); // This runs in a separate thread
         }, metadata -> {
             System.out.println(metadata.getInt("test", 0)); // This runs on the UI thread
