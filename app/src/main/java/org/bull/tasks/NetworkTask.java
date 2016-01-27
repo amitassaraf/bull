@@ -3,8 +3,10 @@ package org.bull.tasks;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -20,8 +22,7 @@ public class NetworkTask extends CombinedTask {
 
     @Override
     public void run() {
-        Bundle metadata = new Bundle();
-        mLogicRunnable.run(metadata);
-        mUIRunnable.run(metadata);
+        mLogicRunnable.run(mMetadata);
+        mUIRunnable.run(mMetadata);
     }
 }

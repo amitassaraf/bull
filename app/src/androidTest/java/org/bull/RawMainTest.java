@@ -10,6 +10,7 @@ import org.bull.activity.ActivitySwitcher;
 import org.bull.tasks.CombinedTask;
 import org.bull.tasks.MetadataRunnable;
 import org.bull.tasks.NetworkTask;
+import org.bull.tasks.RepeatingTask;
 
 import java.lang.reflect.Method;
 
@@ -38,6 +39,17 @@ public class RawMainTest {
         }, metadata -> {
             System.out.println(metadata.getInt("test", 0));
         }).start();
+
+        new RepeatingTask(new TestActivity(), metadata -> {
+            System.out.println("Forever repeating task");
+        }, metadata -> true).start();
+
+        Bundle repeatTimes = new Bundle();
+        repeatTimes.putInt("repeat", 8);
+        new RepeatingTask(new TestActivity(), metadata -> {
+            System.out.println("This repeats 8 times!");
+            metadata.putInt("repeat", metadata.getInt("repeat") - 1);
+        }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
 
     }
 }
