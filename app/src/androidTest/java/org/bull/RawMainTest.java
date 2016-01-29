@@ -2,17 +2,11 @@ package org.bull;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-
-import com.annimon.stream.function.Function;
 
 import org.bull.activity.ActivitySwitcher;
 import org.bull.tasks.CombinedTask;
-import org.bull.tasks.MetadataRunnable;
-import org.bull.tasks.NetworkTask;
+import org.bull.tasks.Metadata;
 import org.bull.tasks.RepeatingTask;
-
-import java.lang.reflect.Method;
 
 /**
  * Raw compilation test
@@ -44,12 +38,13 @@ public class RawMainTest {
             System.out.println("Forever repeating task");
         }, metadata -> true).start();
 
-        Bundle repeatTimes = new Bundle();
+        Metadata repeatTimes = new Metadata();
         repeatTimes.putInt("repeat", 8);
         new RepeatingTask(new TestActivity(), metadata -> {
             System.out.println("This repeats 8 times!");
             metadata.putInt("repeat", metadata.getInt("repeat") - 1);
         }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
+
 
     }
 }

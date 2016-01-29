@@ -17,5 +17,5 @@ public interface TypedMetadataRunnable<T> {
      * @param metadata - The metadata
      * @return A value of generic type T
      */
-    T run(Bundle metadata);
+    T run(Metadata metadata);
 }

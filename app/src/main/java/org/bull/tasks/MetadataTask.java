@@ -14,13 +14,13 @@ import lombok.experimental.Accessors;
 @Accessors(prefix = "m")
 public class MetadataTask extends Task {
 
-    protected Bundle mMetadata;
+    protected Metadata mMetadata;
 
     /**
      * Start the task with metadata
      * @param initialMetadata - Initialize the task with metadata
      */
-    public void start(@NonNull Bundle initialMetadata) {
+    public void start(@NonNull Metadata initialMetadata) {
         mMetadata = initialMetadata;
         super.start();
     }
@@ -29,7 +29,7 @@ public class MetadataTask extends Task {
      * Start the task
      */
     public void start() {
-        mMetadata = new Bundle();
+        mMetadata = new Metadata();
         super.start();
     }
 

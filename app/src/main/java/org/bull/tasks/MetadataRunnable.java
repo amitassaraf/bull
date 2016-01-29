@@ -16,5 +16,5 @@ public interface MetadataRunnable {
      *
      * @param metadata - The metadata
      */
-    void run(Bundle metadata);
+    void run(Metadata metadata);
 }
