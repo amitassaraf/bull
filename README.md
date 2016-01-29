@@ -51,12 +51,15 @@ Repeating Task
             System.out.println("Forever repeating task");
         }, metadata -> true).start();
 
-        Metadata repeatTimes = new Metadata();
-        repeatTimes.putInt("repeat", 8);
-        new RepeatingTask(new TestActivity(), metadata -> {
-            System.out.println("This repeats 8 times!");
-            metadata.putInt("repeat", metadata.getInt("repeat") - 1);
-        }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
+// Another Example
+
+    Metadata repeatTimes = new Metadata();
+    repeatTimes.putInt("repeat", 8);
+    
+    new RepeatingTask(new TestActivity(), metadata -> {
+        System.out.println("This repeats 8 times!");
+        metadata.putInt("repeat", metadata.getInt("repeat") - 1);
+    }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
 
 Contact Me
 ----------
