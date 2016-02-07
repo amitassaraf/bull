@@ -5,15 +5,13 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.annimon.stream.function.Function;
-
 import org.bull.activity.ActivitySwitcher;
 import org.bull.string.StringUtils;
 import org.bull.tasks.CombinedTask;
 import org.bull.tasks.Metadata;
 import org.bull.tasks.RepeatingTask;
 import org.bull.tasks.RepeatingUITask;
-import org.bull.view.Common;
+import org.bull.view.CommonView;
 
 /**
  * Raw compilation test
@@ -71,10 +69,15 @@ public class RawMainTest {
         String concatString = StringUtils.format("Hey", " my name is ", 8, "Don't forget to star!");
 
         // Common find view
-        mSample = Common.findView(mContext, R.id.txt_sample, view -> (TextView) view, text_view -> {
+        mSample = CommonView.findView(mContext, R.id.txt_sample, view -> (TextView) view, text_view -> {
             text_view.setText(concatString);
         });
 
+        // Also added some common ugly checks for the heck of it
+        if (Common.notNull(mSample)) {
+            mSample.setTop(View.SCROLL_INDICATOR_TOP);
+        }
 
+        
     }
 }
