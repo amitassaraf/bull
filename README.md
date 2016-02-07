@@ -15,6 +15,7 @@ Features
  - Tasks
 	 - Combined Task
 	 - Network Task
+	 - Repeating Task
  - Date Utils
  - Math Utils
  - Animation Utils
@@ -44,7 +45,21 @@ Combined Task
         }, metadata -> {
             System.out.println(metadata.getInt("test", 0)); // This runs on the UI thread
         }).start();
+Repeating Task
 
+    new RepeatingTask(new TestActivity(), metadata -> {
+            System.out.println("Forever repeating task");
+        }, metadata -> true).start();
+
+// Another Example
+
+    Metadata repeatTimes = new Metadata();
+    repeatTimes.putInt("repeat", 8);
+    
+    new RepeatingTask(new TestActivity(), metadata -> {
+        System.out.println("This repeats 8 times!");
+        metadata.putInt("repeat", metadata.getInt("repeat") - 1);
+    }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
 
 Contact Me
 ----------
