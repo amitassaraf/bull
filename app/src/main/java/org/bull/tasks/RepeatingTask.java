@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**

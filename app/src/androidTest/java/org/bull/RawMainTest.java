@@ -7,6 +7,7 @@ import org.bull.activity.ActivitySwitcher;
 import org.bull.tasks.CombinedTask;
 import org.bull.tasks.Metadata;
 import org.bull.tasks.RepeatingTask;
+import org.bull.tasks.RepeatingUITask;
 
 /**
  * Raw compilation test
@@ -45,6 +46,9 @@ public class RawMainTest {
             metadata.putInt("repeat", metadata.getInt("repeat") - 1);
         }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
 
-
+        new RepeatingUITask(new TestActivity(), metadata -> {
+            System.out.println("This repeats 8 times!");
+            metadata.putInt("repeat", metadata.getInt("repeat") - 1);
+        }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Layout Sizes -->
+    <dimen name="layout_sm">5dp</dimen>
+    <dimen name="layout_md">10dp</dimen>
+    <dimen name="layout_lg">20dp</dimen>
+    <dimen name="layout_xl">50dp</dimen>
+    <dimen name="layout_xxl">100dp</dimen>
+    <dimen name="layout_giant">200dp</dimen>
+    <dimen name="layout_xgiant">400dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_sm">12sp</dimen>
+    <dimen name="text_md">16sp</dimen>
+    <dimen name="text_lg">20sp</dimen>
+    <dimen name="text_xl">26sp</dimen>
+    <dimen name="text_xxl">32sp</dimen>
+    <dimen name="text_giant">40sp</dimen>
+    <dimen name="text_xgiant">46sp</dimen>
+
+
+
+</resources>
