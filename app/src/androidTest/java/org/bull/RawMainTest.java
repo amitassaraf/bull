@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.bull.activity.ActivitySwitcher;
+import org.bull.generic.TempConst;
+import static org.bull.generic.TempConst.$;
 import org.bull.string.StringUtils;
 import org.bull.tasks.CombinedTask;
 import org.bull.tasks.Metadata;
@@ -50,20 +52,24 @@ public class RawMainTest {
             System.out.println("Forever repeating task");
         }, metadata -> true).start();
 
+        // Temporary constant strings for less code duplication! Access using TempConst.$(id)
+        int repeat = TempConst.$new("repeat");
+
+        // Bull metadata object
         Metadata repeatTimes = new Metadata();
-        repeatTimes.putInt("repeat", 8);
+        repeatTimes.putInt($(repeat), 8);
 
         // Repeating task
         new RepeatingTask(mContext, metadata -> {
             System.out.println("This repeats 8 times!");
-            metadata.putInt("repeat", metadata.getInt("repeat") - 1);
-        }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
+            metadata.putInt($(repeat), metadata.getInt($(repeat)) - 1);
+        }, metadata -> metadata.getInt($(repeat)) > 0).start(repeatTimes);
 
         // Repeating UI task
         new RepeatingUITask(mContext, metadata -> {
             System.out.println("This repeats 8 times!");
-            metadata.putInt("repeat", metadata.getInt("repeat") - 1);
-        }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
+            metadata.putInt($(repeat), metadata.getInt($(repeat)) - 1);
+        }, metadata -> metadata.getInt($(repeat)) > 0).start(repeatTimes);
 
         // Common generic format string
         String concatString = StringUtils.format("Hey", " my name is ", 8, "Don't forget to star!");
@@ -78,6 +84,6 @@ public class RawMainTest {
             mSample.setTop(View.SCROLL_INDICATOR_TOP);
         }
 
-        
+
     }
 }
