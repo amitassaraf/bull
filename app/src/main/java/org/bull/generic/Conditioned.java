@@ -14,8 +14,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Conditioned<T> {
 
-    private T onFalse;
     private T onTrue;
+    private T onFalse;
     private Supplier<Boolean> condition;
 
     /**
