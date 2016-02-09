@@ -11,7 +11,7 @@ public enum AppState {
     RELEASE, DEBUG;
 
     // Public and static so it can be changed from the app :D
-    public static AppState currentState = AppState.DEBUG;
+    public static AppState currentState = AppState.RELEASE;
 
     /**
      * Method to check if the app is in debug mode
