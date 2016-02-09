@@ -20,7 +20,7 @@ import org.bull.view.utils.DialogUtils;
  * <p>
  * Created by amit on 13/01/16.
  */
-public class RawMainTest {
+public class CompileTimeTest {
 
     private static View mSample;
 
