@@ -6,38 +6,39 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.bull.activity.ActivitySwitcher;
-import org.bull.generic.TempConst;
-import static org.bull.generic.TempConst.$;
 import org.bull.string.StringUtils;
 import org.bull.tasks.CombinedTask;
 import org.bull.tasks.Metadata;
 import org.bull.tasks.RepeatingTask;
 import org.bull.tasks.RepeatingUITask;
 import org.bull.view.utils.CommonView;
+import org.bull.view.utils.DialogUtils;
+
 
 /**
  * Raw compilation test
- *
+ * <p>
  * Created by amit on 13/01/16.
  */
 public class RawMainTest {
 
     private static View mSample;
 
-    static class TestActivity extends Activity {}
+    static class TestActivity extends Activity {
+    }
 
     public static void main(String[] args) {
         TestActivity mContext = new TestActivity();
 
         // Activity switcher
         ActivitySwitcher switcher = ActivitySwitcher
-                                        .$chain(mContext)
-                                            .delay(100)
-                                            .intentFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                            .transition(R.anim.fadein, R.anim.fadeout)
-                                            .exitOnSwitch()
-                                            .requireTrigger()
-                                        .$switch(TestActivity.class);
+                .$chain(mContext)
+                .delay(100)
+                .intentFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                .transition(R.anim.fadein, R.anim.fadeout)
+                .exitOnSwitch()
+                .requireTrigger()
+                .$switch(TestActivity.class);
         switcher.trigger();
 
         // Combined UI & Thread task
@@ -52,24 +53,23 @@ public class RawMainTest {
             System.out.println("Forever repeating task");
         }, metadata -> true).start();
 
-        // Temporary constant strings for less code duplication! Access using TempConst.$(id)
-        int repeat = TempConst.$new("repeat");
+        String repeat = "repeat";
 
         // Bull metadata object
         Metadata repeatTimes = new Metadata();
-        repeatTimes.putInt($(repeat), 8);
+        repeatTimes.putInt(repeat, 8);
 
         // Repeating task
         new RepeatingTask(mContext, metadata -> {
             System.out.println("This repeats 8 times!");
-            metadata.putInt($(repeat), metadata.getInt($(repeat)) - 1);
-        }, metadata -> metadata.getInt($(repeat)) > 0).start(repeatTimes);
+            metadata.putInt(repeat, metadata.getInt(repeat) - 1);
+        }, metadata -> metadata.getInt(repeat) > 0).start(repeatTimes);
 
         // Repeating UI task
         new RepeatingUITask(mContext, metadata -> {
             System.out.println("This repeats 8 times!");
-            metadata.putInt($(repeat), metadata.getInt($(repeat)) - 1);
-        }, metadata -> metadata.getInt($(repeat)) > 0).start(repeatTimes);
+            metadata.putInt(repeat, metadata.getInt(repeat) - 1);
+        }, metadata -> metadata.getInt(repeat) > 0).start(repeatTimes);
 
         // Common generic format string
         String concatString = StringUtils.format("Hey", " my name is ", 8, "Don't forget to star!");
@@ -80,10 +80,12 @@ public class RawMainTest {
         });
 
         // Also added some common ugly checks for the heck of it
-        if (Common.notNull(mSample)) {
+        if (CommonUtils.notNull(mSample)) {
             mSample.setTop(View.DRAWING_CACHE_QUALITY_AUTO);
         }
 
+        // Quick show dialog message
+        DialogUtils.showMessagePopup(mContext, "Hello", "mate!");
 
     }
 }

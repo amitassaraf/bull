@@ -1,18 +1,12 @@
 package org.bull.view.utils;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.annimon.stream.function.Consumer;
 import com.annimon.stream.function.Function;
-import com.annimon.stream.function.Predicate;
-import com.annimon.stream.function.Supplier;
-import com.google.common.hash.Funnel;
 
-import org.bull.Common;
-import org.jetbrains.annotations.Contract;
+import org.bull.CommonUtils;
 
 /**
  * Common view functions and utils
@@ -31,7 +25,7 @@ public class CommonView {
      */
     public static <T> T findView(View view, int resId, Function<View, T> caster, Consumer<T> consumer) {
         View child = view.findViewById(resId);
-        if (Common.isNull(child))
+        if (CommonUtils.isNull(child))
             return null;
 
         T casted = caster.apply(child);

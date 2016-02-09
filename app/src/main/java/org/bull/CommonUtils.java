@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Contract;
  *
  * Created by amit on 08/02/16.
  */
-public class Common {
+public class CommonUtils {
 
     /**
      * Function to test if an object is not null
