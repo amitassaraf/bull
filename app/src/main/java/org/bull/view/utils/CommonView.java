@@ -2,11 +2,13 @@ package org.bull.view.utils;
 
 import android.app.Activity;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import com.annimon.stream.function.Consumer;
 import com.annimon.stream.function.Function;
 
 import org.bull.CommonUtils;
+import org.bull.view.ViewDrawListener;
 
 /**
  * Common view functions and utils
@@ -43,6 +45,21 @@ public class CommonView {
      */
     public static <T> T findView(Activity activity, int resId, Function<View, T> caster, Consumer<T> consumer) {
         return findView(activity.getWindow().getDecorView(), resId, caster, consumer);
+    }
+
+    /**
+     * Function to set a draw listener on a view
+     * @param view - The view to add the draw listener to
+     * @param viewDrawListener - The draw listener to add
+     */
+    public static void setViewDrawListener(View view, ViewDrawListener viewDrawListener) {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                viewDrawListener.onViewDrawn(view);
+            }
+        });
     }
 
 }

@@ -87,5 +87,12 @@ public class RawMainTest {
         // Quick show dialog message
         DialogUtils.showMessagePopup(mContext, "Hello", "mate!");
 
+        // View draw listener
+        CommonView.setViewDrawListener(mSample, view -> {
+            int drawnHeight = view.getHeight();
+            DialogUtils.showMessagePopup(mContext, "View Height",
+                    StringUtils.format("View height is ", drawnHeight));
+        });
+
     }
 }
