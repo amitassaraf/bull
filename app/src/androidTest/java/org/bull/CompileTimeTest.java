@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
 import org.bull.activity.ActivitySwitcher;
@@ -18,6 +17,8 @@ import org.bull.view.utils.CommonView;
 import org.bull.view.utils.DialogUtils;
 
 import java.util.List;
+
+import static org.bull.CommonUtils.is;
 
 
 /**
@@ -105,19 +106,20 @@ public class CompileTimeTest {
             System.out.println("Woo hoo!");
         }
 
+        // import static org.bull.CommonUtils.is;
         // Long ass example:
         List<Integer> list = Lists.newArrayList();
-        if (CommonUtils.is(list)) {
+        if (is(list)) {
             System.out.println("Won't enter!");
         }
 
         list.add(null);
-        if (CommonUtils.is(list)) {
+        if (is(list)) {
             System.out.println("Still won't enter!");
         }
 
         list.add(5);
-        if (CommonUtils.is(list)) {
+        if (is(list)) {
             System.out.println("Will enter!");
         }
 
