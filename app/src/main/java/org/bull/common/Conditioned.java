@@ -1,8 +1,6 @@
-package org.bull.generic;
+package org.bull.common;
 
 import com.annimon.stream.function.Supplier;
-
-import org.bull.CommonUtils;
 
 import lombok.AllArgsConstructor;
 

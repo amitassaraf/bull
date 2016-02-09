@@ -7,7 +7,7 @@ import android.view.ViewTreeObserver;
 import com.annimon.stream.function.Consumer;
 import com.annimon.stream.function.Function;
 
-import org.bull.CommonUtils;
+import org.bull.common.CommonUtils;
 import org.bull.view.ViewDrawListener;
 
 /**

@@ -1,4 +1,4 @@
-package org.bull;
+package org.bull.common;
 
 import com.annimon.stream.Stream;
 

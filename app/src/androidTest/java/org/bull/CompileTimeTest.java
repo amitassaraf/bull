@@ -8,7 +8,9 @@ import android.widget.TextView;
 import com.google.common.collect.Lists;
 
 import org.bull.activity.ActivitySwitcher;
-import org.bull.generic.Conditioned;
+import org.bull.common.AppState;
+import org.bull.common.CommonUtils;
+import org.bull.common.Conditioned;
 import org.bull.math.RandomUtils;
 import org.bull.string.StringUtils;
 import org.bull.tasks.CombinedTask;
@@ -20,7 +22,7 @@ import org.bull.view.utils.DialogUtils;
 
 import java.util.List;
 
-import static org.bull.CommonUtils.is;
+import static org.bull.common.CommonUtils.is;
 
 
 /**
@@ -108,7 +110,7 @@ public class CompileTimeTest {
             System.out.println("Woo hoo!");
         }
 
-        // import static org.bull.CommonUtils.is;
+        // import static org.bull.common.CommonUtils.is;
         // Long ass example:
         List<Integer> list = Lists.newArrayList();
         if (is(list)) {
@@ -131,6 +133,14 @@ public class CompileTimeTest {
 
         // Get the value based on the condition
         System.out.println(StringUtils.format("This time we got color ", menuColor.get()));
+
+        // AppState is a simple enum that can be used to switch between debug and release states
+        // across the entire app
+        AppState.currentState = AppState.DEBUG;
+
+        if (AppState.isDebug()) {
+            // Do debug things
+        }
 
     }
 }
