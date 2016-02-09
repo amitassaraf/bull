@@ -35,4 +35,12 @@ public class RandomUtils {
         return randomNum;
     }
 
+    /**
+     * Returns True or False randomly.
+     * @return True or False.
+     */
+    public static boolean yesno() {
+        return randInt(0, 1) == 0;
+    }
+
 }

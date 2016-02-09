@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.google.common.collect.Lists;
 
 import org.bull.activity.ActivitySwitcher;
+import org.bull.generic.Conditioned;
+import org.bull.math.RandomUtils;
 import org.bull.string.StringUtils;
 import org.bull.tasks.CombinedTask;
 import org.bull.tasks.Metadata;
@@ -122,6 +124,13 @@ public class CompileTimeTest {
         if (is(list)) {
             System.out.println("Will enter!");
         }
+
+        // Conditioned is an object that returns between two values based on a condition
+        Conditioned<Integer> menuColor = new Conditioned<>(R.color.colorPrimary,
+                R.color.colorAccent, RandomUtils::yesno);
+
+        // Get the value based on the condition
+        System.out.println(StringUtils.format("This time we got color ", menuColor.get()));
 
     }
 }
