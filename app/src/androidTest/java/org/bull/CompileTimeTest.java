@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
 import org.bull.activity.ActivitySwitcher;
@@ -105,7 +106,6 @@ public class CompileTimeTest {
         }
 
         // Long ass example:
-
         List<Integer> list = Lists.newArrayList();
         if (CommonUtils.is(list)) {
             System.out.println("Won't enter!");
