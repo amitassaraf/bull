@@ -2,6 +2,7 @@ package org.bull.view;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Adapter;
@@ -17,8 +18,12 @@ import lombok.experimental.Accessors;
 @Accessors(prefix = "m")
 public class LinearListView extends LinearLayout {
 
+    /* --- Members --- */
+
     @Getter
     private Adapter mAdapter;
+
+    /* --- Constructors --- */
 
     public LinearListView(Context context) {
         super(context);
@@ -32,16 +37,23 @@ public class LinearListView extends LinearLayout {
         super(context, attrs, defStyleAttr);
     }
 
+    /* --- Getter and setters --- */
+
     /**
      * Method to set the linear list view adapter
      *
      * @param mAdapter - The adapter
      */
-    public void setAdapter(Adapter mAdapter) {
+    public void setAdapter(@NonNull Adapter mAdapter) {
         this.mAdapter = mAdapter;
         this.mAdapter.registerDataSetObserver(new LinearListDataSetObserver());
     }
 
+    /* --- Inner classes --- */
+
+    /**
+     * Class used to observe the adapter data set and update the linear layout if changed
+     */
     private class LinearListDataSetObserver extends DataSetObserver {
 
         @Override
