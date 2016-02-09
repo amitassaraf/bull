@@ -1,4 +1,4 @@
-package org.bull.view;
+package org.bull.view.utils;
 
 import android.view.View;
 import android.view.ViewGroup;

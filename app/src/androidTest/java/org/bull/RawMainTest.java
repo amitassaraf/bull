@@ -13,7 +13,7 @@ import org.bull.tasks.CombinedTask;
 import org.bull.tasks.Metadata;
 import org.bull.tasks.RepeatingTask;
 import org.bull.tasks.RepeatingUITask;
-import org.bull.view.CommonView;
+import org.bull.view.utils.CommonView;
 
 /**
  * Raw compilation test
@@ -81,7 +81,7 @@ public class RawMainTest {
 
         // Also added some common ugly checks for the heck of it
         if (Common.notNull(mSample)) {
-            mSample.setTop(View.SCROLL_INDICATOR_TOP);
+            mSample.setTop(View.DRAWING_CACHE_QUALITY_AUTO);
         }
 
 

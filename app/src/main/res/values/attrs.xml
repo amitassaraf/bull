@@ -3,4 +3,9 @@
     <declare-styleable name="FontTextView">
         <attr name="font_file_name" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="ListView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
 </resources>

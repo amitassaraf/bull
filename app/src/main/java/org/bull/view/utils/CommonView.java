@@ -1,4 +1,4 @@
-package org.bull.view;
+package org.bull.view.utils;
 
 import android.app.Activity;
 import android.content.Context;
