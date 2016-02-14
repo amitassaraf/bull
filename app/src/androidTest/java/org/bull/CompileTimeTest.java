@@ -140,7 +140,10 @@ public class CompileTimeTest {
 
         if (AppState.isDebug()) {
             // Do debug things
+            AppState.currentState = AppState.DEVELOPER;
         }
+
+
 
     }
 }

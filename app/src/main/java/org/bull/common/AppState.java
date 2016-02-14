@@ -8,18 +8,29 @@ import org.jetbrains.annotations.Contract;
  */
 public enum AppState {
 
-    RELEASE, DEBUG;
+    RELEASE, DEBUG, DEVELOPER;
 
     // Public and static so it can be changed from the app :D
     public static AppState currentState = AppState.RELEASE;
 
     /**
      * Method to check if the app is in debug mode
+     *
      * @return True if the app is in debug mode
      */
     @Contract(pure = true)
     public static boolean isDebug() {
         return currentState == AppState.DEBUG;
+    }
+
+    /**
+     * Method to check if the app is in developer mode
+     *
+     * @return True if the app is in developer mode
+     */
+    @Contract(pure = true)
+    public static boolean isDeveloper() {
+        return currentState == AppState.DEVELOPER;
     }
 
 }
