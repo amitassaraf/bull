@@ -75,12 +75,13 @@ Some examples:
         });
 
 **Combined Task**
-
+'''java
     new CombinedTask(this, metadata -> {
             metadata.putInt("test", 7); // This runs in a separate thread
         }, metadata -> {
             System.out.println(metadata.getInt("test", 0)); // This runs on the UI thread
         }).start();
+ '''
 **Repeating Task**
 
     new RepeatingTask(new TestActivity(), metadata -> {
