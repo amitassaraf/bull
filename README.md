@@ -36,90 +36,91 @@ Some examples:
 -----------------------
 ---------------------------
 **Activity Switcher**
-
-    // Activity switcher
-        ActivitySwitcher switcher = ActivitySwitcher
-                .$chain(mContext)
-                .delay(100)
-                .intentFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                .transition(R.anim.fadein, R.anim.fadeout)
-                .exitOnSwitch()
-                .requireTrigger()
-                .$switch(TestActivity.class);
-        switcher.trigger();
-
+```java
+// Activity switcher
+ActivitySwitcher switcher = ActivitySwitcher
+        .$chain(mContext)
+        .delay(100)
+        .intentFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        .transition(R.anim.fadein, R.anim.fadeout)
+        .exitOnSwitch()
+        .requireTrigger()
+        .$switch(TestActivity.class);
+switcher.trigger();
+```
  **Conditioned** is an object that returns between two values based on a condition
-       
-    Conditioned<Integer> menuColor = new Conditioned<>(R.color.colorPrimary,
-                R.color.colorAccent, RandomUtils::yesno);
+```java
+Conditioned<Integer> menuColor = new Conditioned<>(R.color.colorPrimary, R.color.colorAccent, RandomUtils::yesno);
 
-    // Get the value based on the condition
-    System.out.println(StringUtils.format("This time we got color ", menuColor.get()));
+// Get the value based on the condition
+System.out.println(StringUtils.format("This time we got color ", menuColor.get()));
+```
 
 **is** is a function that is used to check the logical existence of a variable  similar to python's "if var: # do stuff"
-
-	if (CommonUtils.is(mSample)) {
-        System.out.println("Woo hoo!");
-    }
-
+```java
+if (CommonUtils.is(mSample)) {
+    System.out.println("Woo hoo!");
+}
+```
 **Dialog Utils**
-        
-        DialogUtils.showMessagePopup(mContext, "Hello", "mate!");
-
+```java
+DialogUtils.showMessagePopup(mContext, "Hello", "mate!");
+```
 **View drawn listener** // A listener for when a view is drawn
-        
-    CommonView.setViewDrawListener(mSample, view -> {
-            int drawnHeight = view.getHeight();
-            DialogUtils.showMessagePopup(mContext, "View Height",
-            StringUtils.format("View height is ", drawnHeight));
-        });
+```java
+CommonView.setViewDrawListener(mSample, view -> {
+         int drawnHeight = view.getHeight();
+         DialogUtils.showMessagePopup(mContext, "View Height",
+         StringUtils.format("View height is ", drawnHeight));
+     });
+```
 
 **Combined Task**
-'''java
-    new CombinedTask(this, metadata -> {
-            metadata.putInt("test", 7); // This runs in a separate thread
-        }, metadata -> {
-            System.out.println(metadata.getInt("test", 0)); // This runs on the UI thread
-        }).start();
- '''
+```java
+new CombinedTask(this, metadata -> {
+        metadata.putInt("test", 7); // This runs in a separate thread
+    }, metadata -> {
+        System.out.println(metadata.getInt("test", 0)); // This runs on the UI thread
+    }).start();
+```
 **Repeating Task**
-
-    new RepeatingTask(new TestActivity(), metadata -> {
-            System.out.println("Forever repeating task");
-        }, metadata -> true).start();
-
+```java
+new RepeatingTask(new TestActivity(), metadata -> {
+       System.out.println("Forever repeating task");
+   }, metadata -> true).start();
+```
 // Another Example
+```java
+Metadata repeatTimes = new Metadata();
+repeatTimes.putInt("repeat", 8);
 
-    Metadata repeatTimes = new Metadata();
-    repeatTimes.putInt("repeat", 8);
-    
-    new RepeatingTask(new TestActivity(), metadata -> {
-        System.out.println("This repeats 8 times!");
-        metadata.putInt("repeat", metadata.getInt("repeat") - 1);
-    }, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
-
+new RepeatingTask(new TestActivity(), metadata -> {
+    System.out.println("This repeats 8 times!");
+    metadata.putInt("repeat", metadata.getInt("repeat") - 1);
+}, metadata -> metadata.getInt("repeat") > 0).start(repeatTimes);
+```
 **Repeating UI Task**
-
-    new RepeatingUITask(mContext, metadata -> {
-            //DO UI THREAD THINGS
-            metadata.putInt(repeat, metadata.getInt(repeat) - 1);
-        }, metadata -> metadata.getInt(repeat) > 0).start(repeatTimes);
-
+```java
+new RepeatingUITask(mContext, metadata -> {
+        //DO UI THREAD THINGS
+        metadata.putInt(repeat, metadata.getInt(repeat) - 1);
+    }, metadata -> metadata.getInt(repeat) > 0).start(repeatTimes);
+```
 **AppState** is a simple enum that can be used to switch between debug and release states across the entire app
-       
-    AppState.currentState = AppState.DEBUG;
+```java
+ AppState.currentState = AppState.DEBUG;
 
-    if (AppState.isDebug()) {
-        // Do debug things
-        AppState.currentState = AppState.DEVELOPER;
-    }
-
+ if (AppState.isDebug()) {
+     // Do debug things
+     AppState.currentState = AppState.DEVELOPER;
+ }
+```
 Also added some **common** ugly checks for the heck of it
-       
-    if (CommonUtils.notNull(mSample)) {
-          mSample.setTop(View.DRAWING_CACHE_QUALITY_AUTO);
-    }
-
+```java
+ if (CommonUtils.notNull(mSample)) {
+    mSample.setTop(View.DRAWING_CACHE_QUALITY_AUTO);
+ }
+```
 Contact Me
 ----------
 ------------
